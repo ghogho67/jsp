@@ -2,14 +2,20 @@ package kr.or.ddit.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 public class TimesTablesServlet extends HttpServlet {
+	
+	private Logger logger = LoggerFactory.getLogger(TimesTablesServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -22,8 +28,7 @@ public class TimesTablesServlet extends HttpServlet {
 		//localhost/jsp/TimesTables?param=6
 //		String param = req.getParameter("param");
 		String param = req.getParameter("i");
-		System.out.println("param : " + param);
-		
+		logger.debug("param : {}", param);
 		
 		//http://localhost/jsp/TimesTables?i=4&j=6
 		
@@ -31,6 +36,8 @@ public class TimesTablesServlet extends HttpServlet {
 		String param2 = req.getParameter("j");
 		Integer b =  Integer.parseInt(param2);
 		Integer a = Integer.parseInt(param);
+		logger.debug("param2 :" + param2);
+
 		
 		
 		
