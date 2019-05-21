@@ -11,7 +11,7 @@
 	<%-- localhost/jsp/jsp/timesTables.jsp --%>
 	<%-- 9*9 단 출력(2~9단) --%>
 
-	<table border=1>
+	<table border=2>
 		<%
 			for (int i = 0; i <= 9; i++) {
 		%>	
