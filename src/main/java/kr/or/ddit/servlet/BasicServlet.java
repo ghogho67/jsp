@@ -40,8 +40,8 @@ public class BasicServlet extends HttpServlet {
 	}
 	
 	/*
-	 *  alt + shift + s  -> v ¿À¹ö¶óÀÌÆ® ÇÏ´Â°Å¿¡ ÀÖ´Â 
-	 *  init ¸Ş¼Òµå
+	 *  alt + shift + s  -> v ëˆŒëŸ¬ì„œì œë„¤ë¦­ ì„œë¸”ë¦­ ì— init ì„ íƒ
+	 *  init ï¿½Ş¼Òµï¿½
 	 * */
 	
 	@Override

@@ -21,7 +21,7 @@ public class TimesTablesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		resp.setContentType("text/html; charset = utf-8 ");
+		resp.setContentType("text/html; charset = UTF-8 ");
 		PrintWriter pw = resp.getWriter();
 
 		
@@ -56,7 +56,7 @@ public class TimesTablesServlet extends HttpServlet {
 
 			for (int j = 2; j <= a; j++) {
 				if(i == 0){
-					pw.write("			<th>"+ j +"´Ü");
+					pw.write("			<th>"+ j +"ï¿½ï¿½");
 				}else if(i >= 1){
 					pw.write("				<td> "+ j +" x "+ i + " = " + j * i + "</td>");
 				}
