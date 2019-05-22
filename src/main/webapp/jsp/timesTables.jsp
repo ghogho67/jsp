@@ -13,12 +13,21 @@
 
 	<table border=2>
 		<%
-			for (int i = 0; i <= 9; i++) {
+		 String param = request.getParameter("i");
+		 String param2 = request.getParameter("j");
+		 Integer a = Integer.parseInt(param);
+		 Integer b = Integer.parseInt(param2);
+		 
+		%>
+	
+	
+		<%
+			for (int i = 0; i <= a; i++) {
 		%>	
 			<tr>
 	
 		<%
-			for (int j = 2; j <= 9; j++) {
+			for (int j = 2; j <= b; j++) {
 					if (i == 0) {
 		%>
 		

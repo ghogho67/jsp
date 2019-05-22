@@ -33,7 +33,10 @@
 	request.getRequestURI() : <%= request.getRequestURI() %> 사용자가 어떤 url로 요청을 했는지 <br>
 	
 	<%-- 서버이름이없을때 쓰는방법 --%>
-	<img src="<%= request.getContextPath() %>/image/벌쳐.jpg">
+	<img src="<%= request.getContextPath() %>/image/벌쳐.jpg"> <br>
+	
+	<%-- 파라미터 받기 --%>
+	request.getParameter("rangersName") : <%=request.getParameter("rangersName") %><br>
 	
 	
 </body>
