@@ -4,6 +4,17 @@
   <artifactId>jsp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+<!-- OJDBC -->  
+  <repositories>
+	<repository>
+		<id>oracle</id>
+		<name>ORACLE JDBC Repository</name>
+		<url>http://maven.jahia.org/maven2</url>
+	</repository>
+  </repositories>
+  
+  
 	
 	
 	<!-- 버젼 업 시키는 방법 javaSE-1.8 업데이트  alt+f5 update -->
@@ -37,8 +48,24 @@
     <version>1.2.3</version>
 </dependency>
 
-</dependencies>
+
+
+<!-- Mybatis -->
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.1</version>
+</dependency>
+
+<!-- 오라클 JDBC6 -->
+<dependency>
+	<groupId>com.oracle</groupId>
+	<artifactId>ojdbc6</artifactId>
+	<version>12.1.0.2</version>
+	<scope>provided</scope>
+</dependency>
 
   
-  
+ </dependencies> 
 </project>

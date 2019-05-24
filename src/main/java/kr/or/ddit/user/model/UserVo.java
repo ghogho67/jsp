@@ -3,16 +3,16 @@ package kr.or.ddit.user.model;
 public class UserVo {
 	private String name;
 	private String userId;
-	private String alais;
+	private String alias;
 	
 	
 	
 	//커트롤 쉬프트 o
-	public UserVo(String name, String userId, String alais) {
+	public UserVo(String name, String userId, String alias) {
 		super();
 		this.name = name;
 		this.userId = userId;
-		this.alais = alais;
+		this.alias = alias;
 	}
 	
 	public UserVo(){
@@ -21,8 +21,8 @@ public class UserVo {
 	
 	@Override
 	public String toString() {
-		return "UserVo [name=" + name + ", userId=" + userId + ", alais="
-				+ alais + "]";
+		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
+				+ alias + "]";
 	}
 	public String getName() {
 		return name;
@@ -37,10 +37,10 @@ public class UserVo {
 		this.userId = userId;
 	}
 	public String getAlais() {
-		return alais;
+		return alias;
 	}
 	public void setAlais(String alais) {
-		this.alais = alais;
+		this.alias = alais;
 	}
 	
 
