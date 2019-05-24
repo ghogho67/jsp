@@ -6,7 +6,7 @@ import kr.or.ddit.user.model.UserVo;
 
 public interface IuserDao {
 
-	
+	//인터페이스에는 접근자를 작성하지 않는다.
 	/**
 	* Method : userList
 	* 작성자 : PC21
@@ -14,5 +14,14 @@ public interface IuserDao {
 	* @return
 	* Method 설명 : 사용자 전체 조회
 	*/
-	public List<UserVo> userList();
+	List<UserVo> userList();
+	
+	/**
+	* Method : getUser
+	* 작성자 : PC21
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 전체 조회
+	*/
+	UserVo getUser(String userId);
 }

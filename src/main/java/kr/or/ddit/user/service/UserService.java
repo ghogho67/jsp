@@ -1,13 +1,18 @@
 package kr.or.ddit.user.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.ddit.user.dao.IuserDao;
+import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 
 
 public class UserService implements IUserService{
-
+	private IuserDao dao;
+	
+	public UserService() {
+		dao = new UserDao();
+	}
 	
 	/**
 	* Method : userList
@@ -19,14 +24,19 @@ public class UserService implements IUserService{
 	@Override
 	public List<UserVo> userList() {
 		
-		List<UserVo> userList = new ArrayList<UserVo>();
-		userList.add(new UserVo("브라운", "brown","곰"));
-		userList.add(new UserVo("코니", "cony","토끼"));
-		userList.add(new UserVo("브라운", "sally","병아리"));
-		userList.add(new UserVo("브라운", ".james",".,..."));
-		userList.add(new UserVo("문", "moon","달"));
+	
+		List<UserVo> userList = dao.userList(); 
 		
 		return userList;
 	}
+
+	@Override
+	public UserVo getUser(String userId) {
+		
+		UserVo vo = dao.getUser(userId);
+		
+		return vo;
+	}
+
 
 }
