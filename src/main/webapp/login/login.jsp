@@ -14,7 +14,7 @@
     
     <!-- 쿠키 값 조회해버리기 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   
+    <script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
     
     <script type="text/javascript">
 //     	$(document).ready(function(){    // 맨 마지막에 실행되게 하는거메소드 // 문서로딩이 완료되고 나서 실행되는 부분
@@ -33,10 +33,10 @@
     		//1. remember cookie가 있는지? 있으면 값이 true 인지?
     		//1-1 remember가 true 이면 input id="remember" 체크박스를 체크
 //     		console.log("ready");
-    		var remember = getCookie("remember");
+    		var remember = Cookies.get("remember");
     		if(remember == 'true'){
     			$("#remember").prop("checked", true);
-    			$("#userId").val(getCookie("userId"));
+    			$("#userId").val(Cookies.get("userId"));
     			$("#password").focus();
     		}
     		
@@ -46,15 +46,15 @@
     			//사용자 아이디 값을 userId 쿠키로 저장
     			// true 값을 remember cookie 값으로 저장
     			if($('#remember').is(":checked")){
-    				setCookie("userId", $("#userId").val(), 30);
-    				setCookie("remember", "true", 30);
+    				Cookies.set("userId", $("#userId").val(), {expires :30});
+    				Cookies.set("remember", "true", {expires :30});
     			
     			//만약에 remember 체크박스가 해제되어 있는 경우
     			//userId, remember cookie 값을 삭제 
     			}else{
     				
-    				deleteCookie("userId");
-    				deleteCookie("remember");
+    				Cookies.remove("userId");
+    				Cookies.remove("remember");
     			}
     			//로그인 요청을 서버로 전송
     			$('#frm').submit();
