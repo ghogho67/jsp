@@ -57,4 +57,27 @@
     <servlet-name>LoginController2</servlet-name>
     <url-pattern>/LoginController2</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  
+  <!-- =======================error 페이지 설정 -->
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/404/404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/500/500.html</location>
+  </error-page>
+  
+  <error-page>
+  	<exception-type>java.lang.NumberFormatException</exception-type>
+  	<location>/WEB-INF/error/numberfromatException.jsp</location>
+  </error-page>
+  
+  
+  
 </web-app>
