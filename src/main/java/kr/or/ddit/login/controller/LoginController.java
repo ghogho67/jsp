@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +52,14 @@ public class LoginController extends HttpServlet {
 	
 	//사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.debug("LoginController doGet()");
+//		logger.debug("LoginController doGet()");
+	
+		
+		for(Cookie cookie : request.getCookies()){
+			logger.debug("cookie : {},{}" , cookie.getName(), cookie.getValue());
+		}
+		
+		
 		
 		//login 화면을 처리해줄 누군가??에게 위임
 		//단순 login화면을 html로 응답을 생성해주는 작업이 필요
@@ -82,6 +90,9 @@ public class LoginController extends HttpServlet {
 	
 	//로그인 요청을 처리 한다.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//remember 값은 체크박스를 체크해야지만 값이온데요
+		logger.debug("parameter remember  : {}" ,request.getParameter("remember"));
 		logger.debug("parameter userId : {}" , request.getParameter("userId"));
 		logger.debug("parameter password : {}" , request.getParameter("password"));
 		
@@ -98,6 +109,28 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면...(로그인 성공) : main 화면으로 이동
 		if(userId.equals("brown")&& password.equals("brown1234")){
+			//2019.05.28 추가
+			//remember 파라미터가 존재할 경우 userId, remember cookie 설정해준다.
+			//remember 파라미터가 존재하지 않을 경우 userId,remember cookie를 삭제한다.
+			int cookieMaxAge = 0;
+			if(request.getParameter("remember")!=null){
+				cookieMaxAge = 60*60*24*30;
+			}
+				
+				Cookie userIdCookie = new Cookie("userId", userId);
+				userIdCookie.setMaxAge(cookieMaxAge); //초단위라서 이렇게 30일 만들었음 setMaxAge 값이 0이면 지워진다.
+				
+				Cookie rememberCookie = new Cookie("remember", "true");
+				rememberCookie.setMaxAge(cookieMaxAge);
+				
+				response.addCookie(userIdCookie);
+				response.addCookie(rememberCookie);
+			
+				
+					
+				
+			
+			
 			
 			//2019.05.23 추가
 			//session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
@@ -114,7 +147,7 @@ public class LoginController extends HttpServlet {
 			//현재 상황에서는 /jsp/login url로 dispatch 방식으로 위임 불가 즉forward 를 사용할 수 없다. 
 			//이유는 request.getMethod(); 가 있었음 // 이것은 get 이냐 post 이냐 를 알려준다.
 			//그래서 redirect 로 한다. 바로 이동할수 있기 때문이다.
-			response.sendRedirect(request.getContextPath()+" /login");
+			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		
 		
