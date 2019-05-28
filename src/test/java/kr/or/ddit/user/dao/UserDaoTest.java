@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import kr.or.ddit.lprod.model.LprodVo;
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 
 import org.junit.After;
@@ -101,6 +103,64 @@ public class UserDaoTest {
 	//볓번째 페이지 조회인지? , 페이징 몇건씩 데이터를 보여줄것인지?
 	//정렬 순서를 무엇으로 할지 생각해봐야되요 --> 로직 -->파라미터화 시킬수 있
 	//--> 우리는 사용자 아이디 순으로 정렬
+	
+	
+	/**
+	* Method : userPagingList
+	* 작성자 : PC21
+	* 변경이력 :
+	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	*/
+	@Test
+	public void userPagingList(){
+		/***Given***/
+		PageVo pageVo = new PageVo(1,10);
+
+		/***When***/
+		List<UserVo> userList = userDao.userPagingList(pageVo);
+
+		/***Then***/
+		assertNotNull(userList);
+		assertEquals(10, userList.size());
+
+	}
+	
+	/**
+	* Method : usersCnt
+	* 작성자 : PC21
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 전체수 조회 테스트
+	*/
+	@Test
+	public void userCnt(){
+		/***Given***/
+		
+		
+		/***When***/
+		int usersCnt = userDao.usersCnt();
+		
+		/***Then***/
+		assertEquals(105, usersCnt);
+
+	}
+	
+	@Test
+	public void lprodPagingList(){
+		/***Given***/
+		PageVo pageVo = new PageVo(1,5);
+
+		/***When***/
+		List<LprodVo> lprodList = userDao.lprodPagingList(pageVo);
+		/***Then***/
+		assertNotNull(lprodList);
+		assertEquals(5, lprodList.size());
+		
+		logger.debug("lprodList : {}", lprodList);
+		logger.debug("lprodList.size() : {}", lprodList.size());
+		
+	}
+	
 	
 	
 

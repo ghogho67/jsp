@@ -1,5 +1,8 @@
 package kr.or.ddit.user.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("userVo")
 public class UserVo {
 	private String name;
 	private String userId;

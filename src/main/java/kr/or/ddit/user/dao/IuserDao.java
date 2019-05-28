@@ -2,6 +2,8 @@ package kr.or.ddit.user.dao;
 
 import java.util.List;
 
+import kr.or.ddit.lprod.model.LprodVo;
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 
 public interface IuserDao {
@@ -21,7 +23,56 @@ public interface IuserDao {
 	* 작성자 : PC21
 	* 변경이력 :
 	* @return
-	* Method 설명 : 사용자 전체 조회
+	* Method 설명 : 특정 사용자 조회
 	*/
 	UserVo getUser(String userId);
+	
+	
+	/**
+	* Method : userPagingList
+	* 작성자 : PC21
+	* 변경이력 :
+	* @param pageVo
+	* @return
+	* Method 설명 : 사용자 페이지 리스트 조회
+	*/
+	List<UserVo> userPagingList(PageVo pageVo);
+	
+	/**
+	* Method : usersCnt
+	* 작성자 : PC21
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 전체수 조회
+	*/
+	int usersCnt();
+	
+	/**
+	* Method : lprodPagingList
+	* 작성자 : PC21
+	* 변경이력 :
+	* @param pageVo
+	* @return
+	* Method 설명 : lprod 페이지 리스트 조회
+	*/
+	List<LprodVo> lprodPagingList(PageVo pageVo);
+	
+	/**
+	* Method : lprodCnt
+	* 작성자 : PC21
+	* 변경이력 :
+	* @return
+	* Method 설명 : lprod 전체수 조회
+ 	*/
+	int lprodCnt();
+	
+	/**
+	* Method : getlprodAll
+	* 작성자 : PC21
+	* 변경이력 :
+	* @return
+	* Method 설명 : lprod 전체 갖고오기
+	*/
+	List<LprodVo> lprodAllList();
+	
 }

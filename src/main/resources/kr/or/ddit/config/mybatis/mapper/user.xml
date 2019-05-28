@@ -2,19 +2,88 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="user">
-  
-  
+
+	
   <select id="userList" resultType="userVo">
     select * from users
     order by userid
   	
   </select>
   
+  
+   <!-- 특정 사용자 조회 -->
   <select id="getUser" parameterType="String" resultType="userVo">
   select * from users where userId = #{value}
  
   	
+  </select>
+  
+  <!-- 사용자 페이지 리스트 조회 -->
+  <!-- pageVo안에 있는 내용(int page, int pgaeSize)  -->
+  <select id="userPagingList" parameterType="pageVo" resultType="userVo">
+<!-- 	 select * -->
+<!--    	 from -->
+<!-- 	    (select a.*,rownum rn -->
+<!-- 	    from -->
+<!-- 	    (select a.* -->
+<!-- 	    from users a -->
+<!-- 	    order by userid) a ) -->
+<!--    	 where rn &gt;= 1 and rn &lt; = 10 -->
+
+
+<!-- 다른방법 -->
+
+<![CDATA[
+	select *
+   	 from
+	    (select a.*,rownum rn
+	    from
+	    (select a.*
+	    from users a
+	    order by userid) a )
+	    
+   	 where rn >= (#{page}-1)*#{pageSize} +1 and rn <= #{page}*#{pageSize}
+	
+  	]]>
+  </select>
+  
+  <!-- 사용자 전체수 조회 -->
+  <select id="usersCnt" resultType="int">
+  	select count(*)
+    from users
+  </select>  
+  
+  
+  
+  <!-- lprod 패이징 처리 쿼리문 -->
+  <select id="lprodPagingList" parameterType="pageVo" resultType="lprodVo">
+  <![CDATA[
+   select *
+    from
+    (select a.*,rownum rn
+    from
+    (select a.*
+    from lprod a
+    order by lprod_id) a )
+  	 where rn >= (#{page}-1)*#{pageSize} +1 and rn <= #{page}*#{pageSize}
+  
+  ]]>
+  </select>
+  
+  <!-- lprod 전체 수 -->
+  <select id="lprodCnt" resultType="int">
+  
+  select count(*)
+  from lprod
+  </select>
+  
+  <!-- lprod 전체 갖고오기 -->
+  <select id="lprodAllList" resultType="lprodVo">
+  select *
+  from lprod
   </select>
 
 </mapper>
