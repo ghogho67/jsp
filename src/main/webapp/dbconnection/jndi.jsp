@@ -1,3 +1,5 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -12,8 +14,16 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 	
+	//java:comp/env 톰캣에서주는거고 다른거쓰면 다른걸 준다 
+	//jdbc/oracleDB 이건 아까 server.mxl 에 설정한 name 값이다.
+	String DTAASOURCE_CONTEXT = "java:comp/env/jdbc/oracleDB";
+	
 	try {
-		BasicDataSource bs = (BasicDataSource)application.getAttribute("bs");
+		
+		InitialContext context = new InitialContext();
+		
+		DataSource bs = (DataSource)context.lookup(DTAASOURCE_CONTEXT);
+		
 		
 		
 		long startTime = System.currentTimeMillis();
