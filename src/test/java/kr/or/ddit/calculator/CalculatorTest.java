@@ -95,7 +95,7 @@ public class CalculatorTest {
 	public void custom_default_seperationTest(){
 		/***Given***/
 		Calculator cal = new Calculator();
-		String text = "//;\n1,5;10:20";
+		String text = "//.\n1.5;10:20";
 
 		/***When***/
 		int result = cal.calculate(text);
