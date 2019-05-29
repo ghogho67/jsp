@@ -14,7 +14,7 @@
     
     <!-- 쿠키 값 조회해버리기 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
+    <script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
     
     <script type="text/javascript">
 //     	$(document).ready(function(){    // 맨 마지막에 실행되게 하는거메소드 // 문서로딩이 완료되고 나서 실행되는 부분
@@ -68,7 +68,7 @@
     		});
     		
 		});
-		
+	/*	
 		//쿠키저장
 		//exprires 받는 방식 설정 : 현재날짜로 부터 몇일동안 유효한지 일자(정수)
 		function setCookie(cookieName, cookieValue, expires){
@@ -101,6 +101,7 @@
 		}
 		return cookieValue;
 	}
+	*/
     </script>
     
 	
@@ -108,16 +109,16 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/signin.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
   </head>
 
   <body>
     <div class="container">
 
-      <form id="frm" class="form-signin" action="<%=request.getContextPath()%>/login" method="post">
+      <form id="frm" class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
       
         <h2 class="form-signin-heading">Please sign in</h2>
       

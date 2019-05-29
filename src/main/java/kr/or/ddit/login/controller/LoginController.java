@@ -55,9 +55,9 @@ public class LoginController extends HttpServlet {
 //		logger.debug("LoginController doGet()");
 	
 		
-		for(Cookie cookie : request.getCookies()){
-			logger.debug("cookie : {},{}" , cookie.getName(), cookie.getValue());
-		}
+//		for(Cookie cookie : request.getCookies()){
+//			logger.debug("cookie : {},{}" , cookie.getName(), cookie.getValue());
+//		}
 		
 		
 		
@@ -109,6 +109,8 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면...(로그인 성공) : main 화면으로 이동
 		if(userId.equals("brown")&& password.equals("brown1234")){
+			
+			
 			//2019.05.28 추가
 			//remember 파라미터가 존재할 경우 userId, remember cookie 설정해준다.
 			//remember 파라미터가 존재하지 않을 경우 userId,remember cookie를 삭제한다.
@@ -125,10 +127,11 @@ public class LoginController extends HttpServlet {
 				
 				response.addCookie(userIdCookie);
 				response.addCookie(rememberCookie);
-			
 				
-					
-				
+				for(Cookie cookie : request.getCookies()){
+					logger.debug("cookie : {},{}", cookie.getName(), cookie.getValue());
+					//요거는 조회가 안된다 위에서 보낸건 response 객체로 보낸거고 이거는 request 객체이기때문이다.
+				}
 			
 			
 			
@@ -147,7 +150,9 @@ public class LoginController extends HttpServlet {
 			//현재 상황에서는 /jsp/login url로 dispatch 방식으로 위임 불가 즉forward 를 사용할 수 없다. 
 			//이유는 request.getMethod(); 가 있었음 // 이것은 get 이냐 post 이냐 를 알려준다.
 			//그래서 redirect 로 한다. 바로 이동할수 있기 때문이다.
-			response.sendRedirect(request.getContextPath()+"/login");
+			
+			request.getRequestDispatcher("/login").forward(request, response);
+//			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		
 		

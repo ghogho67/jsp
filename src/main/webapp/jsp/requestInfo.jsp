@@ -22,18 +22,18 @@
 	request.getRemoteAddr() : <%= request.getRemoteAddr() %><br>
 	request.getLocalAddr() : <%= request.getLocalAddr() %><br>
 	request.getContentType() : <%= request.getContentType() %><br>
-	request.getContextPath() : <%= request.getContextPath() %><br>
+	request.getContextPath() : ${pageContext.request.contextPath}<br>
 	request.getMethod() : <%= request.getMethod() %><br>
 	request.getRequestURI() : <%= request.getRequestURI() %><br>
 	request.getProtocol() : <%= request.getProtocol() %><br>
 	
 	<br>
 	이거 두개는 나중에 쓸수도있습니다.<br>
-	request.getContextPath() : <%= request.getContextPath() %> 내가 요청한 서버 이름을 물어본다<br>
+	request.getContextPath() : ${pageContext.request.contextPath} 내가 요청한 서버 이름을 물어본다<br>
 	request.getRequestURI() : <%= request.getRequestURI() %> 사용자가 어떤 url로 요청을 했는지 <br>
 	
 	<%-- 서버이름이없을때 쓰는방법 --%>
-	<img src="<%= request.getContextPath() %>/image/벌쳐.jpg"> <br>
+	<img src="${pageContext.request.contextPath}/image/벌쳐.jpg"> <br>
 	
 	<%-- 파라미터 받기 --%>
 	request.getParameter("rangersName") : <%=request.getParameter("rangersName") %><br>

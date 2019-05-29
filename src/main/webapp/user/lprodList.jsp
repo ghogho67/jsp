@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,21 +45,17 @@
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
-								<%
-									List<LprodVo> lprodList = (List<LprodVo>)request.getAttribute("lprodList");
-// 									for(int i = 0; i < userList.size(); i++){
-									for(LprodVo lprod : lprodList){
-								%>
+								<c:forEach items="${lprodList }" var="lprod">
 								<tr>
-									<td><%=lprod.getLprod_id()%></td>
-									<td><%=lprod.getLprod_nm()%></td>
-									<td><%=lprod.getLprod_gu()%></td>
+									<td>${lprod.lprod_id}</td>
+									<td>${lprod.lprod_nm}</td>
+									<td>${lprod.lprod_gu}</td>
 <%-- 									<td><%=userList.get(i).getUserId()%></td> --%>
 <%-- 									<td><%=userList.get(i).getName()%></td> --%>
 <%-- 									<td><%=userList.get(i).getAlais()%></td> --%>
 									<td></td>
 								</tr>
-								<%} %>								
+								</c:forEach>
 							</table>
 						</div>
 
@@ -73,7 +70,7 @@
 								<%}else if(pagevo.getPage() != 1){
 									int a = pagevo.getPage() - 1;	
 										%>
-								<li><a href = "<%=request.getContextPath()%>/lprodPagingList?page=<%=a%>
+								<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=a%>
 																			">«</a></li>
 								<%}%>
 							
@@ -88,7 +85,7 @@
 										</li>
 									<%}else{%>
 									
-							 		<li><a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=i%>&pageSize=<%=pagevo.getPageSize()%>"><%=i%></a></li>
+							 		<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=i%>&pageSize=<%=pagevo.getPageSize()%>"><%=i%></a></li>
 							 		
 							 		<%}%>
 							 	<%}%>
@@ -99,7 +96,7 @@
 								<%}else if(pagevo.getPage() != lprodPage){
 									int a = pagevo.getPage() + 1;	
 										%>
-								<li><a href = "<%=request.getContextPath()%>/lprodPagingList?page=<%=a%>
+								<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=a%>
 																			">»</a></li>
 								<%}%>
 							 

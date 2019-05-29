@@ -2,6 +2,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<!-- JSTL 접두어 c   core 를쓰는거임  -->	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,27 +40,24 @@
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
-									<th>사용자 아이디</th>
+									<th>사용자 아이디(el)</th>
 									<th>사용자 이름</th>
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
-								<%
-									List<UserVo> userList = (List<UserVo>)request.getAttribute("userList");
-// 									for(int i = 0; i < userList.size(); i++){
-									for(UserVo user : userList){
-								
-								%>
+								  <!-- userList의 데이터를 한건 조회해서
+								  pageContext.setAttriubte("user",vo); -->
+								  <c:forEach items="${userList }" var="user">
 								<tr>
-									<td><%=user.getUserId()%></td>
-									<td><%=user.getName()%></td>
-									<td><%=user.getAlais()%></td>
-<%-- 									<td><%=userList.get(i).getUserId()%></td> --%>
-<%-- 									<td><%=userList.get(i).getName()%></td> --%>
-<%-- 									<td><%=userList.get(i).getAlais()%></td> --%>
+								
+								<!-- 요것은 UserVo 랑 같아야된다. -->
+									<td>${user.userId }</td>
+									<td>${user.name }</td>
+									<td>${user.alais}</td>
+									
 									<td></td>
 								</tr>
-								<%} %>								
+								  </c:forEach>
 							</table>
 						</div>
 

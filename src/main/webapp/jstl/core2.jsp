@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/jsp/requestDispatchProcess.jsp">
-		<input type="text" name="userId" value="sally"/><br>
-		<input type="submit" value="requsetDispatch">	
-	</form>
+
 </body>
 </html>

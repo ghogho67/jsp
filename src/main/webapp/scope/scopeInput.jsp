@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/scope/scopeReceive.jsp" method="post">
+	<form action="${pageContext.request.contextPath}/scope/scopeReceive.jsp" method="post">
 	<h2>jsp scope 테스트</h2>
 	page	<input type="text" name="pageParam" value="pageValue"><br> 
 	request <input type="text" name="requestParam" value="requestValue"><br>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- client :  최초 요청을 보내는 페이지 (클라이언트라고 생각하면된다.) -->
-	<form action="<%=request.getContextPath()%>/jsp/redirectProcess.jsp">
+	<form action="${pageContext.request.contextPath}/jsp/redirectProcess.jsp">
 		<input type="text" name="userId" value="sally">
 		<input type="submit" value="redirect"/>
 	
