@@ -8,6 +8,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+
+
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +24,35 @@
 <title>사용자 리스트</title>
 <!-- css,js -->
 <%@include file="/common/basicLib.jsp" %>
+
+<style type="text/css">
+	.userTr:hover{
+		cursor: grab;
+	}
+	.userTr:press{
+		cursor: grabbing;
+	}
+	
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".userTr").on("click",function(){
+		console.log("userTr");
+		//userId를 획득하는 방법
+		//$(this).find(".userId").text()
+		//$(this)클릭했을때.data("userId")
+		
+		//사용자 아이디를 #userId 값으로 설정해주고
+		var userId = $(this).find(".userid").text();
+		$("#userId").val(userId);
+		
+		//#frm 을 이용하여 submit();
+		$("#frm").submit();
+		
+	});
+});
+
+</script>
 </head>
 
 <body>
@@ -37,6 +70,14 @@
 				<div class="row">
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자</h2>
+						
+						<!-- 사용자 상세조회 : userId가 필요 이 form 태그는 화면상 안보일꺼임 -->
+						<form id ="frm" action="${pageContext.request.contextPath }/user" method="get">
+							<input type="hidden" id="userId" name="userId"/>
+						
+						</form>
+						
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
@@ -49,8 +90,9 @@
 								
 								<c:forEach items="${userList }" var="user" varStatus ="status">
 									
-								<tr>
-									<td>${status.index}/${status.count}/ ${user.userId }</td>
+								<tr class="userTr" data-userid="${user.userId }">
+									<!-- ${status.index}/${status.count}/ 카운터 주기-->
+									<td class="userid">${user.userId }</td>
 									<td>${user.name }</td>
 									<td>${user.alias}</td>
 									<td></td>
@@ -63,9 +105,6 @@
 
 						<div class="text-center">
 							<ul class="pagination">
-							<% PageVo pagevo = (PageVo)request.getAttribute("pageVo");
-							 
-							%> 
 							<%-- 
 							<li <%if(pagevo.getPage() == 1){ 
 								%> class = "disabled"> 

@@ -154,7 +154,7 @@ public class LoginController extends HttpServlet {
 			//2019.05.23 추가
 			//session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
 			HttpSession session = request.getSession();
-			session.setAttribute("USER_INFO", new UserVo(vo.getUserId(),vo.getName(),vo.getAlias(),vo.getPass()));
+			session.setAttribute("USER_INFO", vo);
 			
 			
 			
