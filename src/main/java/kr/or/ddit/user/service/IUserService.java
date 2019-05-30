@@ -1,14 +1,8 @@
 package kr.or.ddit.user.service;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
-
-import kr.or.ddit.mybatis.MyBatisUtill;
 import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 

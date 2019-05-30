@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.paging.model.PageVo;
-import kr.or.ddit.user.dao.IuserDao;
 import kr.or.ddit.user.model.UserVo;
 
 import org.junit.Before;
@@ -55,10 +54,10 @@ public class UserServiceTest {
 
 		/***Then***/
 		assertEquals("cony", vo.getUserId());
-		assertEquals("토끼", vo.getAlais());
+		assertEquals("토끼", vo.getAlias());
 		assertEquals("코니", vo.getName());
 		logger.debug("vo.getUserId() : {}" ,  vo.getUserId());
-		logger.debug("vo.getAlais() : {}" ,  vo.getAlais());
+		logger.debug("vo.getAlais() : {}" ,  vo.getAlias());
 		logger.debug("vo.getName() : {}" , vo.getName());
 	}
 	
