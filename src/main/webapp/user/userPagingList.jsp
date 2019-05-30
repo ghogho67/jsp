@@ -47,12 +47,12 @@
 								</tr>
 								
 								
-								<c:forEach items="${userList }" var="user">
+								<c:forEach items="${userList }" var="user" varStatus ="status">
 									
 								<tr>
-									<td>${user.userId }</td>
+									<td>${status.index}/${status.count}/ ${user.userId }</td>
 									<td>${user.name }</td>
-									<td>${user.alais}</td>
+									<td>${user.alias}</td>
 									<td></td>
 								</tr>
 								</c:forEach>
@@ -65,22 +65,32 @@
 							<ul class="pagination">
 							<% PageVo pagevo = (PageVo)request.getAttribute("pageVo");
 							 
-							%>
-							
+							%> 
+							<%-- 
 							<li <%if(pagevo.getPage() == 1){ 
-								%> class = "disabled">
+								%> class = "disabled"> 
 									 <span>«</span> </li>
 								<%}else if(pagevo.getPage() != 1){
-									int a = pagevo.getPage() - 1;	
-										%>
+									int a = pagevo.getPage() - 1;	 
+										%> 
 								<li><a href = "${pageContext.request.contextPath}/userPagingList?page=<%=a%>
 																			">«</a></li>
 								<%}%>
+								--%>
+								
+								<c:choose>
+									<c:when test="${pageVo.page == 1}">
+										<li class = "disabled">
+										 <span>«</span> </li>
+									</c:when>
+									<c:otherwise>
+									<li><a href = "${pageContext.request.contextPath}/userPagingList?page=${pageVo.page -1 }& pagesize=${pageVo.pageSize }
+																			">«</a></li>
+									</c:otherwise>
+								</c:choose>
 							
-							<%
 							
-							
-							
+					<%-- 		<%
 							 int paginationSize = (Integer)request.getAttribute("paginationSize");
 							for(int i = 1; i <= paginationSize; i++){
 													
@@ -96,20 +106,47 @@
 																			&pageSize=<%=pagevo.getPageSize()%>"> <%=i%> </a></li>
 								<%} %>
 							<%}	%>
+							--%>
+							
+							<c:forEach begin="1" end="${paginationSize }" step = "1" var = "i">
+								<c:choose >
+									<c:when test="${pageVo.page == i}">
+									<li	class ="active">
+										<span>${pageVo.page }</span>
+									</li>
+									</c:when>
+							<%-- --%>	<c:otherwise>
+										<li>
+										<a href= "${pageContext.request.contextPath}/userPagingList?page=${i }&pageSize=${pageVo.pageSize}"> ${i} </a></li>
+										</c:otherwise>
+								</c:choose>
+							</c:forEach>											
 							
 							
 							
 							
 							
-								<li <%if(pagevo.getPage() == paginationSize){ 
-								%> class = "disabled">
-									 <span>»</span> </li>
-								<%}else if(pagevo.getPage() != paginationSize){
-									int a = pagevo.getPage() + 1;	
-										%>
-								<li><a href = "${pageContext.request.contextPath}/userPagingList?page=<%=a%>
-																			">»</a></li>
-								<%}%>
+<%-- 								<li <%if(pagevo.getPage() == paginationSize){  --%>
+<%-- 								%> class = "disabled"> --%>
+<!-- 									 <span>»</span> </li> -->
+<%-- 								<%}else if(pagevo.getPage() != paginationSize){ --%>
+<!-- // 									int a = pagevo.getPage() + 1;	 -->
+<%-- 										%> --%>
+<%-- 								<li><a href = "${pageContext.request.contextPath}/userPagingList?page=<%=a%> --%>
+<%-- 																			">»</a></li> --%>
+<%-- 								<%}%> --%>
+
+
+								<c:choose>
+									<c:when test="${pageVo.page == paginationSize}">
+										<li class = "disabled">
+											 <span>»</span> </li>
+									</c:when>
+									<c:otherwise>
+									<li><a href = "${pageContext.request.contextPath}/userPagingList?page=${pageVo.page +1 }& pageSize=${pageVo.pageSize }
+																				">»</a></li>
+									</c:otherwise>
+								</c:choose>
 								
 							</ul>
 						</div>

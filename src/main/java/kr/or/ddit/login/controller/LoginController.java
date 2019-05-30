@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +50,18 @@ public class LoginController extends HttpServlet {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	private static final long serialVersionUID = 1L;
+	private IUserService userService;
+	
+	
        
 	
+	@Override
+	public void init() throws ServletException {
+		userService =  new UserService();
+	}
+
+
+
 	//사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		logger.debug("LoginController doGet()");
@@ -100,6 +112,8 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
+		UserVo vo = userService.getUser(userId);
+		
 		
 		
 		//db에서 해당사용자의 정보조회(service, dao)
@@ -108,7 +122,8 @@ public class LoginController extends HttpServlet {
 		// --> userId : brown이고 password : brown1234라는 값일 때 통과, 그 이외 값을 불일치
 		
 		//일치하면...(로그인 성공) : main 화면으로 이동
-		if(userId.equals("brown")&& password.equals("brown1234")){
+		if(vo != null && 
+				password.equals(vo.getPass())){
 			
 			
 			//2019.05.28 추가
@@ -128,17 +143,18 @@ public class LoginController extends HttpServlet {
 				response.addCookie(userIdCookie);
 				response.addCookie(rememberCookie);
 				
-				for(Cookie cookie : request.getCookies()){
-					logger.debug("cookie : {},{}", cookie.getName(), cookie.getValue());
+//				if(request.getCookies() != null){
+//				for(Cookie cookie : request.getCookies()){
+//					logger.debug("cookie : {},{}", cookie.getName(), cookie.getValue());
 					//요거는 조회가 안된다 위에서 보낸건 response 객체로 보낸거고 이거는 request 객체이기때문이다.
-				}
-			
+//				}
+//				}
 			
 			
 			//2019.05.23 추가
 			//session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
 			HttpSession session = request.getSession();
-			session.setAttribute("USER_INFO", new UserVo("브라움","borwm","얼음방패"));
+			session.setAttribute("USER_INFO", new UserVo(vo.getUserId(),vo.getName(),vo.getAlias(),vo.getPass()));
 			
 			
 			
