@@ -40,9 +40,9 @@
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
-									<th>사용자 아이디</th>
-									<th>사용자 이름</th>
-									<th>사용자 별명</th>
+									<th>제품 아이디</th>
+									<th>제품 이름</th>
+									<th>제품 품목</th>
 									<th>등록일시</th>
 								</tr>
 								<c:forEach items="${lprodList }" var="lprod">
@@ -50,9 +50,6 @@
 									<td>${lprod.lprod_id}</td>
 									<td>${lprod.lprod_nm}</td>
 									<td>${lprod.lprod_gu}</td>
-<%-- 									<td><%=userList.get(i).getUserId()%></td> --%>
-<%-- 									<td><%=userList.get(i).getName()%></td> --%>
-<%-- 									<td><%=userList.get(i).getAlais()%></td> --%>
 									<td></td>
 								</tr>
 								</c:forEach>
@@ -61,44 +58,46 @@
 
 						<a class="btn btn-default pull-right">사용자 등록</a>
 
-						<div class="text-center">
+								<div class="text-center">
 							<ul class="pagination">
-							<% PageVo pagevo = (PageVo)request.getAttribute("pageVo"); %>
-							<li <%if(pagevo.getPage() == 1){ 
-								%> class = "disabled">
+							<c:choose>
+								<c:when test="${pageVo.page == 1}">
+							<li class = "disabled">
 									 <span>«</span> </li>
-								<%}else if(pagevo.getPage() != 1){
-									int a = pagevo.getPage() - 1;	
-										%>
-								<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=a%>
-																			">«</a></li>
-								<%}%>
+								</c:when>
+								
+								<c:otherwise>
+								<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page -1}& pagesize=${pageVo.pageSize }">«</a></li>
+								</c:otherwise>
+							</c:choose>
 							
-							 <% int lprodPage = (Integer)request.getAttribute("lprodPagenationSize"); 
-							 	
-							 	
-							 	for(int i = 1; i <= lprodPage; i++){
-									if(pagevo.getPage() == i){
-										%>
+							
+							
+							 <c:forEach begin="1" end="${lprodPagenationSize }" step="1" var = "i">
+										<c:choose>
+											<c:when test="${pageVo.page == i }">
 										<li class="active">
-											<span><%=i%></span>
+											<span>${pageVo.page}</span>
 										</li>
-									<%}else{%>
-									
-							 		<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=i%>&pageSize=<%=pagevo.getPageSize()%>"><%=i%></a></li>
-							 		
-							 		<%}%>
-							 	<%}%>
+										</c:when>
+										
+											<c:otherwise>
+								 		<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${i }&pageSize=${pageVo.pageSize}">
+								 								${i }</a></li>
+							 				</c:otherwise>
+							 			</c:choose>
+							 </c:forEach>
+							 
 							 	
-							<li <%if(pagevo.getPage() == lprodPage){ 
-								%> class = "disabled">
+							<c:choose> 
+								<c:when test="${pageVo.page == lprodPagenationSize}">	
+							<li class = "disabled">
 									 <span>»</span> </li>
-								<%}else if(pagevo.getPage() != lprodPage){
-									int a = pagevo.getPage() + 1;	
-										%>
-								<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=a%>
-																			">»</a></li>
-								<%}%>
+								</c:when>
+								<c:otherwise>
+								<li><a href ="${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page +1 }& pagesize=${pageVo.pageSize }">»</a></li>
+								</c:otherwise>
+							</c:choose>
 							 
 							 	
 								

@@ -47,13 +47,11 @@ public class LprodPagingList extends HttpServlet {
 		
 		List<LprodVo> lprodList = (List<LprodVo>) resultMap.get("lprodList");
 		int lprodPagenationSize = (Integer) resultMap.get("lprodPagenationSize");
-		List<LprodVo> lprodAllList = (List<LprodVo>) resultMap.get("lprodAllList");
 		
 		
 		request.setAttribute("lprodList", lprodList);
 		request.setAttribute("lprodPagenationSize", lprodPagenationSize);
 		request.setAttribute("pageVo", pageVo);
-		request.setAttribute("lprodAllList",lprodAllList);
 		
 		request.getRequestDispatcher("/user/lprodList.jsp").forward(request, response);
 		
