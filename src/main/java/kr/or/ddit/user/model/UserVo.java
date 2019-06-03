@@ -58,7 +58,12 @@ public class UserVo {
 	public void setZipcd(String zipcd) {
 		this.zipcd = zipcd;
 	}
-	public Date getBirth() {
+	
+	
+//	${user.birthStr}} -> ${user.getBirthStr()}
+	public Date BirthStr() {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		return sdf.format(this.birth);
 		return birth;
 	}
 	public void setBirth(Date birth) {
@@ -78,6 +83,25 @@ public class UserVo {
 	}
 	public UserVo() {
 	}
+	
+	
+	
+	
+	public UserVo(String userId, String name, String alias, String pass,
+			String addr1, String addr2, String zipcd, Date birth) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.alias = alias;
+		this.pass = pass;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcd = zipcd;
+		this.birth = birth;
+	}
+	
+	
+	
 	public UserVo(String userId, String name, String alias, String pass,
 			String addr1, String addr2, String zipcd, Date birth, String path,
 			String filename) {

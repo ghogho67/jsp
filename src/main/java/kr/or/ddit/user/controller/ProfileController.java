@@ -41,21 +41,17 @@ public class ProfileController extends HttpServlet {
 		//path정보로 file을 읽어 드여서
 		ServletOutputStream sos = response.getOutputStream();
 		File file = new File(vo.getPath());
+		
 		FileInputStream fis = new FileInputStream(file);
 
 		byte[] buffer = new byte[512];
 		
 		//response객체에 스트림으로 써준다.
-		while(fis.read(buffer,0,512) != 1){
+		while(fis.read(buffer,0,512) != -1){
 			sos.write(buffer);
-		};
-		
+		}
 		fis.close();
 		sos.close();
 		
-		
-		
 	}
-
-
 }

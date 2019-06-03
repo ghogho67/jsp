@@ -2,6 +2,9 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import kr.or.ddit.lprod.model.LprodVo;
@@ -141,7 +144,7 @@ public class UserDaoTest {
 		int usersCnt = userDao.usersCnt();
 		
 		/***Then***/
-		assertEquals(105, usersCnt);
+		assertEquals(106, usersCnt);
 
 	}
 	
@@ -158,6 +161,77 @@ public class UserDaoTest {
 		
 		logger.debug("lprodList : {}", lprodList);
 		logger.debug("lprodList.size() : {}", lprodList.size());
+		
+	}
+	
+	/**
+	* Method : InsertUserTest
+	* 작성자 : PC21
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	*/
+	@Test
+	public void InsertUserTest(){
+		/***Given***/
+		//사용자 담고 있는 vo 객체 준비
+		
+		UserVo vo = new UserVo();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+	     vo.setUserId("userTest");
+		 vo.setAlias("대덕인");
+		 vo.setName("대덕");
+		 vo.setAddr1("대전광역시 중구 중앙로76");
+		 vo.setAddr2("영민빌딩 2층 204호");
+		 vo.setZipcd("12345");
+		 try {
+			vo.setBirth(sdf.parse("2019-05-03"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		 vo.setPass("userTest1234");
+		
+
+		/***When***/
+		//userDao.insertUser()
+		 
+		 int insertCnt = userDao.insertUser(vo);
+
+		/***Then***/
+		 assertEquals(1, insertCnt);
+		//insertCnt(1)
+		 
+		 //data 삭제 
+		int delete = userDao.deleteUser(vo.getUserId());
+		 assertEquals(1, delete);
+		 
+		
+	}
+	
+	@Test
+	public void updateUser() {
+		/***Given***/
+		UserVo vo = new UserVo();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+	     vo.setUserId("user1");
+		 vo.setAlias("대덕인");
+		 vo.setName("대덕");
+		 vo.setAddr1("대전광역시 중구 중앙로76");
+		 vo.setAddr2("영민빌딩 2층 204호");
+		 vo.setZipcd("12345");
+		 try {
+			vo.setBirth(sdf.parse("2019-05-03"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		 vo.setPass("userT1234");
+		 /***When***/
+		 int update = userDao.updateUser(vo);
+		 
+		 /***Then***/
+		 assertEquals(1, update);
+	
 		
 	}
 	

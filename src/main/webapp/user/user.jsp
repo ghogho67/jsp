@@ -22,6 +22,24 @@
 <title>사용자 리스트</title>
 <!-- css,js -->
 <%@include file="/common/basicLib.jsp"%>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+
+	$('#userModifyBtn').on('click', function(){
+	 console.log("user.jsp 에서 보내기 modify로")
+		
+	
+		$("#frm").submit();
+		
+	});
+
+});
+
+
+</script>
+
 </head>
 
 <body>
@@ -38,14 +56,16 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">사용자상세</h2>
+						<h2 class="sub-header">사용자상세내역</h2>
+						
 
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" role="form" id="frm" action="${pageContext.request.contextPath}/modify" method="get">
+							<input type="hidden" id="userId" name="userId"  value="${param.userId }">
 						
 						<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자이미지</label>
 								<div class="col-sm-10">
-									<img alt="" src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}">
+									<img src="${pageContext.request.contextPath }/profile?userId=${param.userId}">
 								</div>
 							</div>
 						
@@ -106,7 +126,7 @@
 							
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-default">사용자 수정</button>
+									<button id="userModifyBtn" type="button" class="btn btn-default">사용자 수정</button>
 								</div>
 							</div>
 						</form>

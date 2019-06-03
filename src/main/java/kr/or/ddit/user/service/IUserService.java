@@ -51,5 +51,37 @@ public interface IUserService {
 	public Map<String,Object> lprodPagingList(PageVo pageVo);
 	
 	
+	/**
+	* Method : deleteUser
+	* 작성자 : PC21
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
+	public int insertUser(UserVo vo);
+	
+	
+	/**
+	* Method : deleteUser
+	* 작성자 : PC21
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	*/
+	public int deleteUser(String userId);
+
+	/**
+	* Method : updateUser
+	* 작성자 : PC21
+	* 변경이력 :
+	* @param vo
+	* @return
+	* Method 설명 : 사용자 업데이트
+	*/
+	public int updateUser(UserVo vo);
+	
+	
 	
 }
