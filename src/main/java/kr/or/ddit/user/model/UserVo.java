@@ -59,11 +59,7 @@ public class UserVo {
 		this.zipcd = zipcd;
 	}
 	
-	
-//	${user.birthStr}} -> ${user.getBirthStr()}
-	public Date BirthStr() {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		return sdf.format(this.birth);
+	public Date getBirth() {
 		return birth;
 	}
 	public void setBirth(Date birth) {

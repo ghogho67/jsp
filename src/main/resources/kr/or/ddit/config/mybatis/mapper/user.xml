@@ -67,8 +67,8 @@
  			#{addr2}, 
  			#{zipcd},
  			#{birth},
- 			'',
- 			'')
+ 			#{path },
+ 			#{filename})
  
  </insert>
  
@@ -90,9 +90,10 @@
     ADDR1 = #{addr1},
     ADDR2 = #{addr2},
     ZIPCD = #{zipcd},
-    BIRTH = #{birth},
-    PATH = '',
-    FILENAME = ''
+    BIRTH = #{birth}
+    <if test="path !=  null">
+    	,path = #{path}, filename = #{filename}
+    </if>
 
 	where USERID = #{userId}
  

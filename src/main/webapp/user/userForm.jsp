@@ -103,13 +103,14 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 등록</h2>
 
-						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm" method="post">
+						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm" method="post"
+									enctype="multipart/form-data">
 						
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자이미지</label>
 								<div class="col-sm-10">
 <%-- 									<img alt="" src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"> --%>
-										<input type="file" name="filename" id="filename">
+										<input type="file" name="profile" id="filename">
 								</div>
 							</div>
 						
@@ -171,7 +172,8 @@
 								<label for="birth" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
 									 <input type="text" class="form-control" id="birth"
-										name="birth" placeholder="생일" value="${param.birth }">
+										name="birth" placeholder="생일" value="<fmt:parseDate value="${param.birth }" pattern="yyyy-mm-DD"/>">
+										
 																	
 								</div>
 							</div>

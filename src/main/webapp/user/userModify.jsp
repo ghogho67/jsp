@@ -103,13 +103,15 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 수정</h2>
 
-						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/modify" method="post">
+						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/modify" method="post" 
+							enctype="multipart/form-data">
+							<input type="hidden" name="userId" value="${userVo.userId }" >
 						
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자이미지</label>
 								<div class="col-sm-10">
 <%-- 									<img alt="" src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"> --%>
-										<input type="file" name="filename" id="filename">
+										<input type="file" name="profile" id="filename"  >
 								</div>
 							</div>
 						
@@ -169,7 +171,9 @@
 							<div class="form-group">
 								<label for="birth" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
-									<label class="control-label">fmt : <fmt:formatDate value="${userVo.birth}" pattern="yyyy-MM-dd"/></label>
+									 <input type="date" class="form-control" id="birth"
+										name="birth" placeholder="생일" value=
+										<fmt:formatDate value="${userVo.birth}" pattern="yyyy-MM-dd"/>>
 																	
 								</div>
 							</div>
@@ -188,7 +192,7 @@
 							
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button id="userRegBtn" type="button" class="btn btn-default">사용자 등록</button>
+									<button id="userRegBtn" type="button" class="btn btn-default">수정확인</button>
 								</div>
 							</div>
 							

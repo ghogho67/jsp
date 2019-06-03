@@ -58,7 +58,6 @@ public class FileUploadServlet extends HttpServlet {
 					
 					String contentDisposition = part.getHeader("content-disposition");
 					String fileName = PartUtill.getFileName(contentDisposition);
-					logger.debug("fileName : {}", fileName);
 					String ext = PartUtill.getExt(fileName);
 					
 					//년도에 해당하는 폴더가 있는지, 년도안에 월에 해당하는 폴더가있는지 
@@ -69,23 +68,11 @@ public class FileUploadServlet extends HttpServlet {
 					String mm= yyyyMm.substring(4);
 					
 					
-					
-					File yyyyFolder = new File("d:\\upload\\"+ yyyy);
-					//신규년도로 넘어 갔을때 해당 년도의 폴더를 생성한다.
-					if(!yyyyFolder.exists()){
-						yyyyFolder.mkdir();
-					}
-					//월에 해당하는 폴더가 있는지 확인
-					File mmFolder = new File("d:\\upload\\"+ yyyy + "\\" + mm);
-					if(!mmFolder.exists()){
-						mmFolder.mkdir();
-					}
-					
-					String uploadPath = "d:\\upload\\"+ yyyy + File.separator + mm;  // File.separator = \\
-					File uploadFolder = new File(uploadPath);
+					String uploadpath = PartUtill.getUploadPath();
+					File uploadFolder = new File(uploadpath);
 					if(uploadFolder.exists()){
 						//파일 디스크에 쓰기 / UUID.randomUUID 이름값을 중복이 안되게 임의의 값으로 출력한다.
-						part.write( uploadPath +"\\"+ UUID.randomUUID() + ext);  // 경로를 써준다.
+						part.write( uploadpath +"\\"+ UUID.randomUUID() + ext);  // 경로를 써준다.
 						part.delete();
 					}
 				}
