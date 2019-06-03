@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
@@ -111,6 +112,7 @@ public class LoginController extends HttpServlet {
 		//사용자 파라미터 userId, password
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		String encyptPassword = KISA_SHA256.encrypt(password);
 		
 		UserVo vo = userService.getUser(userId);
 		
@@ -123,7 +125,7 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면...(로그인 성공) : main 화면으로 이동
 		if(vo != null && 
-				password.equals(vo.getPass())){
+				encyptPassword.equals(vo.getPass())){
 			
 			
 			//2019.05.28 추가
