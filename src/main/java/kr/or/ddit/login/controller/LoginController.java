@@ -159,7 +159,6 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("USER_INFO", vo);
 			
 			
-			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
 			
@@ -169,7 +168,7 @@ public class LoginController extends HttpServlet {
 			//이유는 request.getMethod(); 가 있었음 // 이것은 get 이냐 post 이냐 를 알려준다.
 			//그래서 redirect 로 한다. 바로 이동할수 있기 때문이다.
 			
-			request.getRequestDispatcher("/login").forward(request, response);
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 //			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		
