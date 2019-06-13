@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class UserDao implements IuserDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserDao.class);
+	
 	public static void main(String[] args) {
 		//alt + shift + x
 		//gwt +컨트롤 +스페이스바 기본적인 환경을 작성한다.

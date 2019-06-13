@@ -20,11 +20,12 @@ public class PartUtill {
 	* @param contentDisposition
 	* @return
 	* Method 설명 : contentDisposition에서 파일명을 반환한다.
-	*/
+	
 	public static String getFileName(String contentDisposition) {
 //		form-data; name="profile"; filename="sally.png" 이렇게 나오는데 이름을 다시한번 구분한다.
-		String result[] = contentDisposition.split(";");
+		String result[] = contentDisposition.split("; ");
 		String[] fileName = result[2].split("\"");
+
 		
 //		for (int i = 0; i < result.length; i++) {
 //			logger.debug("result[] : {}", result[i]);
@@ -33,6 +34,31 @@ public class PartUtill {
 		
 		return fileName[1];
 	}
+	*/
+	
+	/**
+	    * Method : getFileName
+	    * 작성자 : PC05
+	    * 변경이력 : 
+	    * @param contentDisposition
+	    * @return
+	    * Method 설명 : contentDisposition에서 파일명을 반환한다
+	    */
+	   public static String getFileName(String contentDisposition) {
+	      // form-data; name="profile"; filename="sally.png"
+	      String[] strArray = contentDisposition.split("; ");
+	      
+	      String fileName = "";
+	      
+	      for(String str : strArray){
+	         if(str.startsWith("filename=")){
+	            String[] value = str.split("=");
+	            fileName = value[1].substring(value[1].indexOf("\"")+1, value[1].lastIndexOf("\""));
+	            break;
+	         }
+	      }
+	      return fileName;
+	   }
 
 	/**
 	* Method : getExt
@@ -98,13 +124,5 @@ public class PartUtill {
 		
 		PartUtill.checkUploadFolder(year, month);
 		return UPLOAD_PATH+ year + File.separator + month;  // File.separator = \\
-		
-		
-		
-		
-		
 	}
-	
-	
-
 }

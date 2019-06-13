@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * Servlet implementation class FileUploadServlet
  */
 @WebServlet("/fileUpload")
-@MultipartConfig(maxFileSize=1024*1024*3, maxRequestSize = 1024*1024) // maxFileSize = 3메가 maxnRequestSize = *15 하면 15메가
+@MultipartConfig(maxFileSize=1024*1024*3, maxRequestSize = 1024*1024*15) // maxFileSize = 3메가 maxnRequestSize = *15 하면 15메가
 public class FileUploadServlet extends HttpServlet {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FileUploadServlet.class);
