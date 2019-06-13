@@ -18,15 +18,10 @@
 		$("#select").on("change",function(){
 			$("#frm").submit();
 		});
-		
-		
 	});
-	
-	
 </script>
 </head>
 <body>
-
 	<h2>select locale</h2>
 	
 	<form id="frm" action="${pageContext.request.contextPath }/selectLocale" method="post">
@@ -45,8 +40,5 @@
 					<fmt:param value="brown" /><br>
 				</fmt:message>
 			</fmt:bundle>
-		
-
-
 </body>
 </html>

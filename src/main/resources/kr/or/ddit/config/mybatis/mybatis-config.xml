@@ -7,6 +7,7 @@
 		<typeAlias type="kr.or.ddit.user.model.UserVo" />
 		<typeAlias type="kr.or.ddit.paging.model.PageVo" />
 		<typeAlias type="kr.or.ddit.lprod.model.LprodVo" />
+		<typeAlias alias="prodVo" type="kr.or.ddit.prod.model.ProdVo" />
 	</typeAliases>
 	
 
@@ -24,5 +25,6 @@
 	
 	<mappers>
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/prod.xml" />
 	</mappers>
 </configuration>
