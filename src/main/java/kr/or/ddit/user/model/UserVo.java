@@ -2,10 +2,15 @@ package kr.or.ddit.user.model;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
 import org.apache.ibatis.type.Alias;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Alias("userVo")
-public class UserVo {
+public class UserVo implements HttpSessionBindingListener{
 	private String userId;
 	private String name;
 	private String alias;
@@ -119,6 +124,21 @@ public class UserVo {
 				+ alias + ", pass=" + pass + ", addr1=" + addr1 + ", addr2="
 				+ addr2 + ", zipcd=" + zipcd + ", birth=" + birth + ", path="
 				+ path + ", filename=" + filename + "]";
+	}
+	
+	
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserVo.class);
+			
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		logger.debug("*******value Bound*******");
+	}
+	
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		logger.debug("*******value Bound*******");
 	}
 	
 	

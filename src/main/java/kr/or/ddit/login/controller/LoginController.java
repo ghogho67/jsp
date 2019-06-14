@@ -65,7 +65,8 @@ public class LoginController extends HttpServlet {
 
 	//사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		logger.debug("LoginController doGet()");
+		logger.debug("LoginController doGet()");
+		logger.debug("parameter UNT_CD  : {}" ,request.getParameter("UNT_CD"));
 	
 		
 //		for(Cookie cookie : request.getCookies()){
@@ -105,6 +106,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//remember 값은 체크박스를 체크해야지만 값이온데요
+		logger.debug("parameter UNT_CD  : {}" ,request.getParameter("UNT_CD"));
 		logger.debug("parameter remember  : {}" ,request.getParameter("remember"));
 		logger.debug("parameter userId : {}" , request.getParameter("userId"));
 		logger.debug("parameter password : {}" , request.getParameter("password"));
@@ -113,9 +115,10 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		String encyptPassword = KISA_SHA256.encrypt(password);
+		logger.debug("encyptPassword : {}" , encyptPassword);
 		
 		UserVo vo = userService.getUser(userId);
-		
+		logger.debug("UserVo  : {}" , vo);
 		
 		
 		//db에서 해당사용자의 정보조회(service, dao)

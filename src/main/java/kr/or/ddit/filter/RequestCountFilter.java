@@ -46,7 +46,7 @@ public class RequestCountFilter implements Filter {
 		String uri = req.getRequestURI();
 		int reqCount = requestMap.getOrDefault(uri, 0);
 		reqCount++;
-		requestMap.put(uri, reqCount);
+		requestMap.put(uri,reqCount);
 		
 		chain.doFilter(request, response);
 	}
