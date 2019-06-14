@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/test1234" method="post" enctype="multipart/form-data">
+	<form action="${cp}/test1234" method="post" enctype="multipart/form-data">
 		userId : <input type="text" name ="userId" value="brown" /><br>
 		file : <input type="file" name="profile"><br>
 		file : <input type="file" name="profile"><br>
@@ -19,7 +19,7 @@
 	
 	
 	
-<%-- 	<form action="${pageContext.request.contextPath }/fileUpload" method="post" enctype="multipart/form-data"> --%>
+<%-- 	<form action="${cp}/fileUpload" method="post" enctype="multipart/form-data"> --%>
 <!-- 		userId : <input type="text" name ="userId" value="brown" /><br> -->
 <!-- 		file : <input type="file" name="profile"><br> -->
 <!-- 		file : <input type="file" name="profile"><br> -->

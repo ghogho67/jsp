@@ -65,7 +65,7 @@ $(document).ready(function(){
 						<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자이미지</label>
 								<div class="col-sm-10">
-									<img src="${pageContext.request.contextPath }/profile?userId=${param.userId}">
+									<img src="${cp}/profile?userId=${param.userId}">
 								</div>
 							</div>
 						

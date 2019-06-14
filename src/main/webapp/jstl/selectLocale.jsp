@@ -24,7 +24,7 @@
 <body>
 	<h2>select locale</h2>
 	
-	<form id="frm" action="${pageContext.request.contextPath }/selectLocale" method="post">
+	<form id="frm" action="${cp}/selectLocale" method="post">
 		<select id="select" name = "optionVal">
 			
 		  		<option value="ko">한국어</option>

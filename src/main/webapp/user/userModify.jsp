@@ -103,14 +103,14 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 수정</h2>
 
-						<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/modify" method="post" 
+						<form id="frm" class="form-horizontal" role="form" action="${cp }/modify" method="post" 
 							enctype="multipart/form-data">
 							<input type="hidden" name="userId" value="${userVo.userId }" >
 						
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자이미지</label>
 								<div class="col-sm-10">
-<%-- 									<img alt="" src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"> --%>
+<%-- 									<img alt="" src="${cp}/profile?userId=${userVo.userId}"> --%>
 										<input type="file" name="profile" id="filename"  >
 								</div>
 							</div>

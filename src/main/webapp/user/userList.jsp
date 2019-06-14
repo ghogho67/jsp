@@ -72,7 +72,7 @@ $(document).ready(function(){
 						<h2 class="sub-header">사용자</h2>
 						
 						<!-- 사용자 상세조회 : userId가 필요 이 form 태그는 화면상 안보일꺼임 -->
-						<form id ="frm" action="${pageContext.request.contextPath }/user" method="get">
+						<form id ="frm" action="${cp}/user" method="get">
 							<input type="hidden" id="userId" name="userId"/>
 						
 						</form>
@@ -101,7 +101,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a  href="${pageContext.request.contextPath }/userForm" class="btn btn-default pull-right">사용자 등록</a>
+						<a  href="${cp}/userForm" class="btn btn-default pull-right">사용자 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">
