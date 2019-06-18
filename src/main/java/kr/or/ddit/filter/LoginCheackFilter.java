@@ -51,7 +51,9 @@ public class LoginCheackFilter implements Filter {
 		//처리가 되어야되는거가 로그인이 안됬을때 들어왔을때 지금 login으로 넘어가는거임
 		
         if(uri.startsWith("/login") || uri.startsWith("/js")||
-           uri.startsWith("/css") || uri.startsWith("/img") || uri.startsWith("/requestCount") || uri.startsWith("/sessionViewontroller"))
+           uri.startsWith("/css") || uri.startsWith("/img") || uri.startsWith("/requestCount") || uri.startsWith("/sessionViewontroller")
+           || uri.startsWith("/bootstrap"))
+        	
         chain.doFilter(request, response);
         
         //session을 체크 해야하는 대상들
