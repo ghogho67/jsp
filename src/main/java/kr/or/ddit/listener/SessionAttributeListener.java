@@ -17,7 +17,8 @@ public class SessionAttributeListener implements HttpSessionAttributeListener {
 		event.getSession().getServletContext().setAttribute("sessionUserMap", sessionUserMap);
 		//속성명(event.getName())
 		if("USER_INFO".equals(event.getName())){ // 체크할려는 속성을 맵에 넣어준다.
-			sessionUserMap.put(event.getSession().getId(), (UserVo)event.getValue()); //j세션에 아이디를 갖고와서 키값으로주고 이벤트의 값을 넣어준다. 
+			//j세션에 아이디를 갖고와서 키값으로주고 이벤트의 값을 넣어준다. 
+			sessionUserMap.put(event.getSession().getId(), (UserVo)event.getValue()); 
 		}
 	}
 

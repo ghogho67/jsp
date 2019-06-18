@@ -27,10 +27,12 @@ public class DefaultParamFilter implements Filter {
 		DefaultPramWrapper requestWrapper = new DefaultPramWrapper((HttpServletRequest)request);
 		를 통해서 
 		requestWrapper.setParameter("UNT_CD", new String[]{"LINE"}); 파라미터를 set 해주고
-		chain.doFilter(requestWrapper, response); //파라미터 세팅 일반 request를 보내주는게 아니라 우리가 만들어준 requestWrapper를 세팅하여 보내주면
+		chain.doFilter(requestWrapper, response); //파라미터 세팅 일반 request를 보내주는게 아니라 
+		우리가 만들어준 requestWrapper를 세팅하여 보내주면
 		전지역에 request.getparmeter("UNT_CD") 해주면 그안에있는 배열값을 보낼수있다.
 		
-		이거 하기 전에 DefaultPramWrapper.java 안에서 오버라이드를 해준다. 오른쪽 상단에 quick Access에 override 를 쳐서 parameter 를 포함하는것들을
+		이거 하기 전에 DefaultPramWrapper.java 안에서 오버라이드를 해준다. 오른쪽 상단에 
+		quick Access에 override 를 쳐서 parameter 를 포함하는것들을
 		오버라이드 해준다음 연결해준다. 저 자세한것은 DefaultPramWrapper.java안에 확인!
 		*
 		*/
